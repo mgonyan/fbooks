@@ -1,1 +1,1 @@
-# Favorites books
+# Favorite book list
