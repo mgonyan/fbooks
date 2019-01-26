@@ -33,6 +33,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
       - run: npm run tslint
       - run: npm test
+      - run: npm run build
