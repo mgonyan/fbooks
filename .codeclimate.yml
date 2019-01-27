@@ -1,0 +1,30 @@
+version: '2'
+checks:
+  argument-count:
+    config:
+      threshold: 8
+  complex-logic:
+    config:
+      threshold: 8
+  file-lines:
+    enabled: false
+  method-complexity:
+    config:
+      threshold: 10
+  method-count:
+    enabled: false
+  method-lines:
+    enabled: false
+  nested-control-flow:
+    config:
+      threshold: 4
+  return-statements:
+    config:
+      threshold: 4
+  similar-code:
+    enabled: false # because react is designed in a way that we have duplicates
+  identical-code:
+    config:
+      threshold: # But we should not have identical code!
+exclude_patterns:
+  - '*.snap*'

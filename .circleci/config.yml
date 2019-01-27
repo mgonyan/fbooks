@@ -26,7 +26,14 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+      - run:
+          name: Install CodeClimate tools
+          command: |
+            curl -L -o cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+            chmod +x cc-test-reporter
+            ./cc-test-reporter before-build
+
+      - run: npm ci
 
       - save_cache:
           paths:
@@ -35,4 +42,11 @@ jobs:
 
       - run: npm run tslint
       - run: npm test
+      - run:
+          name: Format Coverage
+          command: ./cc-test-reporter format-coverage -t lcov repo/coverage/lcov.info -o codeclimate.json
+      - run:
+          name: Upload Coverage
+          command: ./cc-test-reporter upload-coverage -d -i codeclimate.json -r $CODECLIMATE_REPO_TOKEN
+
       - run: npm run build
