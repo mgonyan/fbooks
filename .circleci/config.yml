@@ -33,7 +33,7 @@ jobs:
             chmod +x cc-test-reporter
             ./cc-test-reporter before-build
 
-      - run: npm install
+      - run: npm ci
 
       - save_cache:
           paths:
