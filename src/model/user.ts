@@ -53,4 +53,11 @@ export default class User {
   public getLikedCategories(): Category[] {
     return this.categories;
   }
+
+  public dislikes(book: Book): void {
+    const booksEqualToDislikeOne = (currentBook: Book) =>
+      currentBook.getId() !== book.getId();
+
+    this.books = this.books.filter(booksEqualToDislikeOne);
+  }
 }

@@ -68,4 +68,14 @@ describe('User', () => {
     expect(user.getLikedCategories()).toHaveLength(1);
     expect(user.getLikedCategories()).toEqual([history]);
   });
+  it('dislikes a book', () => {
+    const user = new UserBuilder().withALikedBook().build();
+    const book = user.getLikedBooks()[0];
+
+    expect(book).toBeDefined();
+
+    user.dislikes(book);
+
+    expect(user.getLikedBooks()).toHaveLength(0);
+  });
 });
